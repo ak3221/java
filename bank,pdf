@@ -1,0 +1,43 @@
+class BankException extends Exception
+{
+    BankException(String msg)
+    {
+        super(msg);
+    }
+}
+
+class Bank
+{
+    int balance = 1000;
+
+    void withdraw(int amount) throws BankException
+    {
+        if(amount > balance)
+        {
+            throw new BankException("Insufficient Balance");
+        }
+        else
+        {
+            balance = balance - amount;
+            System.out.println("Withdraw Successful");
+            System.out.println("Remaining Balance: " + balance);
+        }
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Bank b = new Bank();
+
+        try
+        {
+            b.withdraw(1500);
+        }
+        catch(BankException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+}
